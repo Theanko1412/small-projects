@@ -1,4 +1,0 @@
-The program generates 10 strong and random passwords.
-Select and copy one out of 10 that you like the most. 
-It contains all the characters that strong password should have and have 20 characters. 
-Make sure you write it down when you choose it, everytime new 10 passwords are generated.
