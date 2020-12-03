@@ -25,7 +25,7 @@ Enter lookahead buffer >> 5
 Enter a message >> 
 You didn't send a message.
 
-### If character * is not on the end of the message(but exist)
+### If character * is not at the end of the message(but exist)
 Enter dictionary size >> 6
 Enter lookahead buffer >> 5
 Enter a message >> aaba*aacbddbbbcca
