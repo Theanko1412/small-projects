@@ -51,7 +51,7 @@ public class Main {
 		int strlen = message.length();
 		char[] messageArray = new char[strlen + lookAhead];			//making an array biggest to avoid dealing with exceptions(IndexOutOfBounds)
 		
-		if(!message.endsWith("*")) {								//message can be sent with or without character for ending, we will add it after anyways
+		if(!message.endsWith("*")) {						//message can be sent with or without character for ending, we will add it after anyways
 			strBld.append(message).append("*");	
 			message = strBld.toString();
 			strlen++;
@@ -114,18 +114,24 @@ public class Main {
 			
 			foundInDictionary = new StringBuilder();
 			
-			for(int loop = 1; loop <= lookAhead; loop++) {			
-				if(string1.contains(string2.subSequence(0, loop))) {				//loop variable will tell us how much and which characters in sequence we took from our dictionary
+			for(int loop = 1; loop <= lookAhead; loop++) {	
+				//loop variable will tell us how much and which characters in sequence we took from our dictionary
+				if(string1.contains(string2.subSequence(0, loop))) {				
 					foundInDictionaryLenght++;				
 					foundInDictionary.append(lookAheadBuffer[loop-1]);
+					
+					//jumpBack will be our searchBufferLenght - the last index of string(or single char) we found in dictionary
 				    jumpBack = string1.lastIndexOf(foundInDictionary.toString());	
-					jumpBack = searchBufferLenght - jumpBack;						//jumpBack will be our searchBufferLenght - the last index of string(or single char) we found in dictionary
-					if(jumpBack > 1 && foundInDictionaryLenght == jumpBack) {		//if we jumped back more than one character and we took every character from jumpBack to the end
+					jumpBack = searchBufferLenght - jumpBack;	
+					
+					//if we jumped back more than one character and we took every character from jumpBack to the end
+					if(jumpBack > 1 && foundInDictionaryLenght == jumpBack) {		
 						flag = true;												
 							//look for chars that will be repeated from the dictionary again, test variable will tell us the number
 							for(int test = 0; test < lookAheadBuffer.length-foundInDictionaryLenght;) {
 								try {
-									if(lookAheadBuffer[foundInDictionaryLenght+test] == searchBuffer[(searchBufferLenght-jumpBack+test)%(lookAheadBuffer.length-foundInDictionaryLenght)]) {
+									if(lookAheadBuffer[foundInDictionaryLenght+test] == searchBuffer[(searchBufferLenght-jumpBack+test)%
+									                                                                 (lookAheadBuffer.length-foundInDictionaryLenght)]) {
 										foundInDictionaryLenght++;							
 									}
 								} catch (ArrayIndexOutOfBoundsException ex) {	
@@ -138,7 +144,8 @@ public class Main {
 				//when we jump back from upper loop we are checking how much chars did we found in dictionary
 				} else {													 
 					if(foundInDictionaryLenght == 0) break;				//if no chars found nothing needs to be set
-					else if(foundInDictionaryLenght >= lookAhead) {		//if we found more chars than we can white in the buffer, take the max number we can put -1(the one we add last)
+					//if we found more chars than we can white in the buffer, take the max number we can put -1(the one we add last)
+					else if(foundInDictionaryLenght >= lookAhead) {		
 						foundInDictionaryLenght = lookAhead-1;	
 					}
 																			
@@ -151,13 +158,13 @@ public class Main {
 			}
 			
 			
-			int repeated = 1;					//number of repeated chars we found in the dictionary
+			int repeated = 1;				//number of repeated chars we found in the dictionary
 			int var = 0;											
 			
 			//if we jumped back max. 1 character we calculate how many time the char before/current char will be repeated
 			if(jumpBack == 1 || jumpBack == 0) {					
 				for(int k = 2; k < lookAheadBuffer.length; k++, var++) {
-					if(k > lookAhead-foundInDictionaryLenght) break;				//again stoping if we exceed lenght of out buffer
+					if(k > lookAhead-foundInDictionaryLenght) break;			//again stoping if we exceed lenght of out buffer
 					if(lookAheadBuffer[var] == lookAheadBuffer[var+1]) {	
 						repeated++;
 					} else break;
@@ -171,7 +178,7 @@ public class Main {
 			//if no chars found in dictionary we are jumping all the way here and outputing the same string with next char 
 			if(foundInDictionaryLenght == 0) {				
 				System.out.printf("(0, 0, %c)  ", messageArray[current]);		
-				if(messageArray[current] == '*') break;							//checking for message ending
+				if(messageArray[current] == '*') break;					//checking for message ending
 				repeated = 0;										
 				current++;
 				continue;
@@ -180,7 +187,7 @@ public class Main {
 			//if we found at least one char in dictionary, moving the current position, and outputting encoded string
 			current = current + repeated + 1;													
 			System.out.printf("(%d, %d, %c)  ", jumpBack, repeated, messageArray[current-1]);
-			if(messageArray[current-1] == '*') break;											//checking for message ending
+			if(messageArray[current-1] == '*') break;			//checking for message ending
 		}
 		input.close();			
 		input2.close();
