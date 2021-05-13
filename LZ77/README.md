@@ -35,7 +35,6 @@ Encoding...
 
 
 ## Using the program
-The program is made for fun and is not made for encoding whole documents. To start it you can dowload the LZ77.jar file and run it inside command prompt with command > java -jar "path to LZ77.jar file" 
-If you want to modify, run inside of the code editor of your choice or just see my algorithm it is inside package -> src -> Main -> Main.java
-
-The program is great if you are leaning LZ77 encoding and want some practice. Just simply think of some random numbers and a random string and see the encoded message --author Danko Čurlin
+The program is made for fun and practice only and is not made for real file encoding. To start it you can dowload the LZ77.jar file and run it inside command prompt with command ``` java -jar "path to LZ77.jar file" ```
+The program is great if you are leaning LZ77 encoding and want some practice. Just simply think of some random numbers and a random string and see the encoded message 
+> --author Danko Čurlin
