@@ -4,10 +4,13 @@
 
 int main(void) {
    int i, j;
+   int userInput = 20;
+   printf("Enter the password length > ");
+   scanf("%d", &userInput);
    srand((unsigned int)time(NULL));
-   for (j = 0; j < 20; j++) {
+   for (j = 0; j < 10; j++) {
       printf("%d. >  ", j + 1);
-      for (i = 0; i < 20; i++) {
+      for (i = 0; i < userInput; i++) {
          if (rand() % (2 - 0 + 1) == 0) {
             printf("%c", rand() % ('Z' - 'A' + 1) + 'A');
          } else if (rand() % (2 - 0 + 1) == 1) {
